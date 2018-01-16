@@ -1,0 +1,23 @@
+services:
+    # Command to start terminal interface
+    kryptopus_command_start_terminal_interface:
+        class: "application/command/StartCommand"
+        tags:
+            - { name: "solfege.console.command" }
+
+    # Screen
+    kryptopus_terminal_interface_screen:
+        class: "domain/Screen"
+        arguments:
+            - "@kryptopus_terminal_interface_menu"
+            - "@kryptopus_terminal_interface_modal_bots"
+
+    # Menu component
+    kryptopus_terminal_interface_menu:
+        class: "domain/component/Menu"
+
+    # Modal bot list component
+    kryptopus_terminal_interface_modal_bots:
+        class: "domain/component/ModalBots"
+        arguments:
+            - "%bots%"
