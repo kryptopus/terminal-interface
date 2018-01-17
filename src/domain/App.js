@@ -8,10 +8,17 @@ import {createStore, combineReducers, applyMiddleware, compose} from "redux"
 import asyncAwaitMiddleware from "redux-async-await"
 import thunkMiddleware from "redux-thunk"
 import {createLogger} from "redux-logger"
+
+// Components
 import Header from "./container/Header"
 import ModalExchanges from "./container/ModalExchanges"
+
+// Reducers
 import openedModalsReducer from "./reducer/openedModals"
 import exchangesReducer from "./reducer/exchanges"
+import bodyReducer from "./reducer/body"
+
+// Actions
 import openModalExchanges from "./action/modal/openModalExchanges"
 
 export interface AppProps {
@@ -42,6 +49,7 @@ export default class App extends Component<AppProps, void>
                 container:      () => { return props.container },
                 openedModals:   openedModalsReducer,
                 exchanges:      exchangesReducer,
+                body:           bodyReducer,
             }),
             applyMiddleware(asyncAwaitMiddleware, thunkMiddleware, loggerMiddleware)
         );

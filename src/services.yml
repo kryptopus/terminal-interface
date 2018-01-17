@@ -1,10 +1,12 @@
 services:
     # Command to start terminal interface
     kryptopus_command_start_terminal_interface:
-        class: "application/command/StartCommand"
+        class: application/command/StartCommand
         arguments:
             - "@container"
         tags:
-            - { name: "solfege.console.command" }
+            - { name: solfege.console.command }
 
-
+    # Body registry
+    kryptopus_terminal_interface_body_registry:
+        class: domain/service/BodyRegistry
