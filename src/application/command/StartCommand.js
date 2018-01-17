@@ -1,12 +1,10 @@
 /* @flow */
+import type Container from "solfegejs-dependency-injection/src/ServiceContainer/Container"
 import type {CommandInterface} from "solfegejs-cli/interface"
 import React from "react"
 import blessed from "blessed"
 import {render} from "react-blessed"
-import { Provider } from "react-redux"
-import { createStore } from "redux"
 import App from "../../domain/App"
-import reducers from "../../domain/reducer"
 
 /**
  * Start terminal interface
@@ -19,10 +17,18 @@ export default class StartCommand implements CommandInterface
     description:string;
 
     /**
-     * Constructor
+     * Service container
      */
-    constructor()
+    container:Container;
+
+    /**
+     * Constructor
+     *
+     * @param   {Container}     container   Service container
+     */
+    constructor(container:Container)
     {
+        this.container = container;
     }
 
     /**
@@ -66,23 +72,7 @@ export default class StartCommand implements CommandInterface
             smartCSR: true,
             title: "Kryptopus"
         });
-        screen.key(["q", "C-c"], this.quit);
 
-
-        let store = createStore(reducers)
-        const component = render(
-            <Provider store={store}>
-                <App />
-            </Provider>,
-            screen
-        );
-    }
-
-    /**
-     * Quit
-     */
-    quit()
-    {
-        return process.exit(0);
+        const component = render(<App screen={screen} container={this.container}/>, screen);
     }
 }
