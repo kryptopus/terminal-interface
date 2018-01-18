@@ -10,6 +10,7 @@ export interface Props {
     opened:boolean;
     exchanges:Array<any>;
     onEscape?:Function;
+    onSelect?:Function;
 }
 
 /**
@@ -24,6 +25,7 @@ export default class ModalExchanges extends Component<Props, void> {
             return;
         }
         table.widget.rows.key("escape", this.escape);
+        table.widget.rows.on("select", this.select);
         table.widget.rows.focus();
     }
 
@@ -88,6 +90,16 @@ export default class ModalExchanges extends Component<Props, void> {
     {
         if (typeof this.props.onEscape === "function") {
             this.props.onEscape();
+        }
+    }
+
+    @bind
+    select(item:any, index:number)
+    {
+        if (typeof this.props.onSelect === "function") {
+            if (index < this.props.exchanges.length) {
+                this.props.onSelect(this.props.exchanges[index], index);
+            }
         }
     }
 }

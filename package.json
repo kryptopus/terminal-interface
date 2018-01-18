@@ -1,7 +1,7 @@
 {
     "name": "kryptopus-terminal-interface",
     "description": "Terminal interface for Kryptopus",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "author": "neolao <contact@neolao.com>",
     "repository": "https://github.com/kryptopus/terminal-interface.git",
     "license": "MIT",

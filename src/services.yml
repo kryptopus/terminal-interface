@@ -10,3 +10,9 @@ services:
     # Body registry
     kryptopus_terminal_interface_body_registry:
         class: domain/service/BodyRegistry
+
+    # Empty body
+    kryptopus_terminal_interface_body_empty:
+        class: domain/body/EmptyBody
+        tags:
+            - { name: kryptopus.terminal_interface.body, body_id: empty }

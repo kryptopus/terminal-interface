@@ -3,12 +3,14 @@ import connect from "./connect"
 import ModalExchanges, {Props} from "../component/ModalExchanges"
 import closeModalExchanges from "../action/modal/closeModalExchanges"
 import loadExchanges from "../action/exchange/loadExchanges"
+import changeBody from "../action/body/changeBody"
 
 /**
  * Enhance Style component
  * Connect the component to Redux store
  */
 export default connect((store, dispatch, ownProps):Props => {
+    const container = store.container;
     let opened = false;
 
     const openedModals = store.openedModals;
@@ -34,6 +36,10 @@ export default connect((store, dispatch, ownProps):Props => {
 
         onEscape: () => {
             dispatch(closeModalExchanges());
+        },
+
+        onSelect: (exchange:any, index:number) => {
+            dispatch(changeBody(container, "empty", {}));
         }
     };
 })(ModalExchanges);

@@ -11,6 +11,7 @@ import {createLogger} from "redux-logger"
 
 // Components
 import Header from "./container/Header"
+import BodyContainer from "./container/BodyContainer"
 import ModalExchanges from "./container/ModalExchanges"
 
 // Reducers
@@ -65,6 +66,7 @@ export default class App extends Component<AppProps, void>
             <Provider store={this.store}>
                 <element>
                     <Header/>
+                    <BodyContainer/>
                     <ModalExchanges/>
                 </element>
             </Provider>
