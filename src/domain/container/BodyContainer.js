@@ -16,6 +16,9 @@ export default connect((store, dispatch, ownProps):Props => {
             props.service = store.body.service;
             props.ComponentClass = store.body.service.getComponentClass();
         }
+        if (store.body.parameters) {
+            props.parameters = store.body.parameters;
+        }
     }
 
     return props;

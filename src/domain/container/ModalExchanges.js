@@ -39,7 +39,10 @@ export default connect((store, dispatch, ownProps):Props => {
         },
 
         onSelect: (exchange:any, index:number) => {
-            dispatch(changeBody(container, "empty", {}));
+            if (exchange.getType() === "binance") {
+                dispatch(changeBody(container, "binance_account", {exchange: exchange}));
+                dispatch(closeModalExchanges());
+            }
         }
     };
 })(ModalExchanges);

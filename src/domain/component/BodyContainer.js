@@ -38,7 +38,7 @@ export default class BodyContainer extends Component<Props, *> {
         // $FlowFixMe
         const ComponentClass = this.props.ComponentClass;
         return (
-            <box top={2}>
+            <box width="100%" height="100%" top={2}>
                 <ComponentClass {...parameters}/>
             </box>
         );
